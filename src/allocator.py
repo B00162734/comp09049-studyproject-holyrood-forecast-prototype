@@ -13,6 +13,6 @@ class SeatAllocator(object):
             #   s is the number of seats won so far
             
             q = {party:forecast[party] / (seats_won_so_far[party] + 1) for party in forecast}
-            max_key = max(q, key = q.get)
+            max_key = max(q, key = q.get) # type: ignore
             seats_won_so_far[max_key] += 1
         return seats_won_so_far
