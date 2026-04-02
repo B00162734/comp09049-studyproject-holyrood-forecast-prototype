@@ -1,4 +1,7 @@
-def reportExporter():
-    print("This is the report exporter class")
+"""
+ReportExporter
+--------------
+"""
 
-reportExporter()
+def report_exporter():
+    raise NotImplementedError("Report exporter not implemented, out of scope")
