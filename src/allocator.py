@@ -1,6 +1,9 @@
 """
 SeatAllocator
 --------------
+
+The seat allocator allocates regional list seats using the D'Hondt method.
+
 """
 
 class SeatAllocator(object):
@@ -9,10 +12,12 @@ class SeatAllocator(object):
 
         for seats in range(seats_available):
             #   for q=v/s+1 where q is the quotient (projected number of total seats won)
-            #   v is the number of votes received or in our case the forecasted number of seats per   party
+            #   v is the number of votes received or in our case the vote share for each party
             #   s is the number of seats won so far
             
             q = {party:forecast[party] / (seats_won_so_far[party] + 1) for party in forecast}
+            #   the highest value in the q dictionary, or in other words the party who won a seat this round
             max_key = max(q, key = q.get) # type: ignore
             seats_won_so_far[max_key] += 1
+        #   Return the updated tally of seats won
         return seats_won_so_far

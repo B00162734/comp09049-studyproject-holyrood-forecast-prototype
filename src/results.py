@@ -1,6 +1,9 @@
 """
 ExperimentResults
 -------
+
+The ExperimentResults class stores the forecast, seat allocation and the metrics
+
 """
 
 class ExperimentResults(object):

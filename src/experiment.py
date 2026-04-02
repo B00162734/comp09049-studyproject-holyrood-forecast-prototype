@@ -1,6 +1,11 @@
 """
 ForecastExperiment
 -----------------
+
+The ForecastExperiment class runs the experiment.
+The other classes needed to conduct the experiment are called and utilised in order to
+return the results
+
 """
 from data_source import DataSource
 from engine import ForecastEngine
@@ -12,34 +17,32 @@ from repository import FileRepository
 
 class ForecastExperiment(object):
     def __init__(self, id:str, config, sources):
-        self.id = id
-        self.config = config
-        self.sources = sources
+        self.id = id    #   unique identifier for the experiment
+        self.config = config    #   configuration settings
+        self.sources = sources  #   data sources (paths)
     
     def run(self):
-    #   for each data source load source data and apply normalisation and weights
+        #   for each data source load source data and apply normalisation and weights
         
         for source in self.sources:
             data = source.load()
 
-    #   call generate(data, cfg)
+        #   call generate(data, cfg)
               
             forecast = ForecastEngine().generate(data, self.config)
 
-    #   use returned forecasts to call the seat allocator - allocate_dhondt(forecast)
+        #   use returned forecasts to call the seat allocator - allocate_dhondt(forecast)
 
             allocation = SeatAllocator().allocate_dhondt(forecast.to_dict(),7)
 
-    #   call experiment results  - create(forecast, allocation)
-            metrics = 0.05
+        #   call experiment results  - create(forecast, allocation)
+            metrics = 0.05  #   placeholder value, metric calculation has not been implemented yet
             results = ExperimentResults(forecast,allocation, metrics)
 
-    #   call file repository to save the results
+        #   call file repository to save the results
         outputs_root = Path("outputs")
         data_root = Path("data/processed")
         saved_results  = FileRepository(data_root, outputs_root)
         saved_results.save_results(self.id,results)
         return results
-
-    #   export the saved results to the export reporter - export(exp_id,results,out_dir)
 

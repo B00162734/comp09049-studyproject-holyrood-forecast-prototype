@@ -1,6 +1,9 @@
 """
 ReportExporter
 --------------
+
+This class is not yet implemented.
+
 """
 
 def report_exporter():
