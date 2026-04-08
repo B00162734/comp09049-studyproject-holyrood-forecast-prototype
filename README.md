@@ -1,6 +1,6 @@
 # Holyrood Forecast Prototype
 ## COMP09049 Study Project: David McGowan (B00162734)
-> **Note:** This README was added on 03/04/2026, after the submission date of 01/04/2026.
+> **Note:** This README was added on 08/04/2026, after the submission date of 01/04/2026.
 > The core codebase and report are unchanged from the original submission.
 
 ## Overview
